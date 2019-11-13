@@ -1,0 +1,23 @@
+---
+title: "htmk"
+author: "Wiola swies"
+date: "13 11 2019"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library('rvest')
+```
+
+## R Markdown
+```{r}
+library('xml2')
+data <- read_html("https://www.tibia.com/community/?subtopic=worlds") %>%
+  html_nodes(xpath='//*[contains(concat( " ", @class, " " ), concat( " ", "InnerTableContainer", " " ))]//table') %>%
+  html_table(., fill = TRUE)
+world_table = data[[1]]
+world_table[6:]
+
+```
+
